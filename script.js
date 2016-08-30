@@ -9,15 +9,19 @@ function createMatrix() {
   }
 }
 
-function setCell(row,col,val) {
-  var index = col+row*32;
-  var cell = document.getElementById('matrix').children[index];
-  cell.style.backgroundColor = (val == true) ? 'blue' : 'inherit';
-}
-
 function getCell(row,col) {
   var index = col+row*32;
   var cell = document.getElementById('matrix').children[index];
+  return cell;
+}
+
+function setCellValue(row,col,val) {
+  var cell = getCell(row,col);
+  cell.style.backgroundColor = (val == true) ? 'blue' : 'inherit';
+}
+
+function getCellValue(row,col) {
+  var cell = getCell(row,col);
   var cellColor = cell.style.backgroundColor;
   return cellColor == 'blue';
 }
@@ -26,6 +30,6 @@ function getCell(row,col) {
 
 window.onload = function() {
   createMatrix();
-  setCell(0,2,true);
-  console.log(getCell(0,1));
+  setCellValue(0,2,true);
+  console.log(getCellValue(0,2));
 }
