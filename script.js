@@ -1,3 +1,4 @@
+
 function createMatrix() {
   var matrix = document.getElementById('matrix');
   var n = 32 * 32;
@@ -9,14 +10,22 @@ function createMatrix() {
 }
 
 function setCell(row,col,val) {
-  var index = col+row*4;
+  var index = col+row*32;
   var cell = document.getElementById('matrix').children[index];
-  if (val == true) {
-    cell.style.backgroundColor = '#2196F3';
-  }
+  cell.style.backgroundColor = (val == true) ? 'blue' : 'inherit';
 }
+
+function getCell(row,col) {
+  var index = col+row*32;
+  var cell = document.getElementById('matrix').children[index];
+  var cellColor = cell.style.backgroundColor;
+  return cellColor == 'blue';
+}
+
+
 
 window.onload = function() {
   createMatrix();
-  setCell(0,0,true);
+  setCell(0,2,true);
+  console.log(getCell(0,1));
 }
