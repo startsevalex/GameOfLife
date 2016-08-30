@@ -43,9 +43,10 @@ function getCellValue(row,col) {
   return cellColor == 'blue';
 }
 
-function arrowListener(event) {
+function arrowListener() {
+  setCellValue(row,col,false);
   if (event.keyCode == 37) {
-    alert('Left');
+    col--;
   } else if (event.keyCode == 38) {
     row++;
   } else if (event.keyCode == 39) {
@@ -53,6 +54,7 @@ function arrowListener(event) {
   } else if (event.keyCode == 40) {
     row--;
   }
+  setCellValue(row,col,true);
 }
 
 function play() {
@@ -65,5 +67,20 @@ function play() {
 
 window.onload = function() {
   createMatrix();
-  play();
+  var row = 0;
+  var col = 0;
+  setCellValue(row,col,true);
+  addEventListener('keydown', function(event) {
+    setCellValue(row,col,false);
+    if (event.keyCode == 37) {
+      col--;
+    } else if (event.keyCode == 38) {
+      row--;
+    } else if (event.keyCode == 39) {
+      col++;
+    } else if (event.keyCode == 40) {
+      row++;
+    }
+    setCellValue(row,col,true);
+  });
 }
