@@ -43,10 +43,27 @@ function getCellValue(row,col) {
   return cellColor == 'blue';
 }
 
+function arrowListener(event) {
+  if (event.keyCode == 37) {
+    alert('Left');
+  } else if (event.keyCode == 38) {
+    row++;
+  } else if (event.keyCode == 39) {
+    col++;
+  } else if (event.keyCode == 40) {
+    row--;
+  }
+}
+
+function play() {
+  var row = 0;
+  var col = 0;
+  setCellValue(row,col,true);
+  addEventListener('keydown', arrowListener);
+}
 
 
 window.onload = function() {
   createMatrix();
-  setCellValue(0,2,true);
-  console.log(getCellValue(0,2));
+  play();
 }
